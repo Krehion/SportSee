@@ -1,0 +1,16 @@
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Dashboard from "../../pages/dashboard/Dashboard.jsx";
+
+const AppRouter = () => {
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route path="/" element={<Navigate to="/user/12" />} />{" "}
+				{/* redirect to user 12 by default for kickstarting the project, remove once there's a homepage */}
+				<Route path="/user/:id" element={<Dashboard />} />
+			</Routes>
+		</BrowserRouter>
+	);
+};
+
+export default AppRouter;
