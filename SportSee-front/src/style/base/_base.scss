@@ -1,0 +1,18 @@
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: $font-primary;
+}
+
+ul {
+	list-style-type: none;
+}
+
+a {
+	text-decoration: none;
+}
