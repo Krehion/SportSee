@@ -1,0 +1,29 @@
+@import "../base/_variables.scss";
+
+.sidebar {
+	position: relative;
+	width: 117px;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: $black-bkgd;
+	box-shadow: $shadow-nav;
+
+	&--icon-container {
+		display: flex;
+		flex-direction: column;
+		gap: 22px;
+		padding-bottom: 86px;
+	}
+
+	&--rights {
+		color: #ffffff;
+		transform: rotate(-90deg);
+		font-size: 0.75rem;
+		text-wrap: nowrap;
+		position: absolute;
+		bottom: 85px;
+	}
+}

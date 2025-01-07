@@ -1,4 +1,7 @@
+import "../../style/layout/_dashboard.scss";
+
 import Header from "../../components/header/Header";
+import Sidebar from "../../components/sidebar/Sidebar";
 
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -13,9 +16,12 @@ const Dashboard = () => {
 	}, [id, setUserId]);
 
 	return (
-		<div>
+		<div className="dashboard">
 			<Header />
-			<h1>Dashboard for User {id}</h1>
+			<div className="dashboard--content">
+				<Sidebar />
+				<h1>Dashboard for User {id}</h1>
+			</div>
 		</div>
 	);
 };
