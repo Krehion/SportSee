@@ -1,0 +1,29 @@
+@import "../base/_variables.scss";
+
+.header {
+	display: flex;
+	background: $black-bkgd;
+	box-shadow: $shadow-nav;
+
+	&--logo {
+		margin: 18px 28px 12px 28px;
+	}
+
+	nav {
+		display: flex;
+		align-items: center;
+		flex: 1;
+
+		.navbar {
+			display: flex;
+			width: 100%;
+			justify-content: space-around;
+
+			a {
+				color: #ffffff;
+				font-size: 1.5rem;
+				font-weight: $font-weight-regular;
+			}
+		}
+	}
+}

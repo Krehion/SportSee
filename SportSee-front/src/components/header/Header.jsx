@@ -1,3 +1,4 @@
+import "../../style/layout/_header.scss";
 import Logo from "../../assets/logo.svg";
 
 import { useUser } from "../../context/UserContext";
@@ -8,9 +9,9 @@ function Header() {
 
 	return (
 		<header className="header">
-			<img src={Logo} alt="SportSee" />
+			<img src={Logo} alt="SportSee" className="header--logo" />
 			<nav>
-				<ul>
+				<ul className="navbar">
 					<li>
 						<Link to="/">Accueil</Link>
 					</li>
