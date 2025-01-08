@@ -5,6 +5,7 @@ import "../../style/layout/_dashboard.scss";
 import Header from "../../components/header/Header";
 import Sidebar from "../../components/sidebar/Sidebar";
 import UserActivity from "../../components/userActivity/UserActivity.jsx";
+import SessionLength from "../../components/sessionLength/SessionLength.jsx";
 
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -32,6 +33,7 @@ const Dashboard = () => {
 					<p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
 
 					<UserActivity userId={id} />
+					<SessionLength userId={id} />
 				</main>
 			</div>
 		</div>
