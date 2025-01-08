@@ -7,6 +7,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import UserActivity from "../../components/userActivity/UserActivity";
 import SessionLength from "../../components/sessionLength/SessionLength";
 import ActivityType from "../../components/activityType/ActivityType";
+import Score from "../../components/score/Score";
 
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -36,6 +37,7 @@ const Dashboard = () => {
 					<UserActivity userId={id} />
 					<SessionLength userId={id} />
 					<ActivityType userId={id} />
+					<Score userId={id} />
 				</main>
 			</div>
 		</div>
