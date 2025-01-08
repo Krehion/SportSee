@@ -2,7 +2,7 @@
 
 .header {
 	display: flex;
-	background: $black-bkgd;
+	background: var(--black-bkgd);
 	box-shadow: $shadow-nav;
 	position: relative;
 	z-index: 1000;

@@ -8,7 +8,7 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background: $black-bkgd;
+	background: var(--black-bkgd);
 	box-shadow: $shadow-nav;
 
 	&--icon-container {

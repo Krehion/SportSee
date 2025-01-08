@@ -1,11 +1,13 @@
 // COLOR VARIABLES
-
-$color-primary: #ff0101;
-$grey-bkgd: #fbfbfb;
-$grey-light: #9b9eac;
-$grey-medium-2: #74798c;
-$grey-dark: #282d30;
-$black-bkgd: #020203;
+:root {
+	--color-primary: #ff0101;
+	--red-dark: #e60000;
+	--grey-bkgd: #fbfbfb;
+	--grey-light: #9b9eac;
+	--grey-medium-2: #74798c;
+	--grey-dark: #282d30;
+	--black-bkgd: #020203;
+}
 
 // FONT VARIABLES
 
