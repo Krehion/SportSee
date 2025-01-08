@@ -1,7 +1,10 @@
+import { USER_MAIN_DATA } from "../../datas/mockData.js";
+
 import "../../style/layout/_dashboard.scss";
 
 import Header from "../../components/header/Header";
 import Sidebar from "../../components/sidebar/Sidebar";
+import UserActivity from "../../components/userActivity/UserActivity.jsx";
 
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -15,12 +18,21 @@ const Dashboard = () => {
 		setUserId(id);
 	}, [id, setUserId]);
 
+	const user = USER_MAIN_DATA.find((user) => user.id === parseInt(id));
+
 	return (
 		<div className="dashboard">
 			<Header />
 			<div className="dashboard--content">
 				<Sidebar />
-				<h1>Dashboard for User {id}</h1>
+				<main className="dashboard--content--main">
+					<p className="dashboard--content--main--greetings">
+						Bonjour <span className="primary-color">{user.userInfos.firstName}</span>
+					</p>
+					<p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
+
+					<UserActivity userId={id} />
+				</main>
 			</div>
 		</div>
 	);

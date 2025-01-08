@@ -8,5 +8,17 @@
 	&--content {
 		flex: 1;
 		display: flex;
+		width: 100%;
+
+		&--main {
+			flex: 1;
+			padding: 70px 100px;
+
+			&--greetings {
+				font-size: 3rem;
+				font-weight: $font-weight-regular;
+				margin-bottom: 10px;
+			}
+		}
 	}
 }
