@@ -13,11 +13,28 @@
 		&--main {
 			flex: 1;
 			padding: 70px 100px;
+			display: flex;
+			flex-direction: column;
 
 			&--greetings {
 				font-size: 3rem;
 				font-weight: $font-weight-regular;
 				margin-bottom: 10px;
+			}
+
+			&--charts {
+				display: flex;
+
+				&__left-col {
+					flex: 3;
+				}
+
+				&__right-col {
+					flex: 1;
+					display: flex;
+					flex-direction: column;
+					justify-content: space-between;
+				}
 			}
 		}
 	}

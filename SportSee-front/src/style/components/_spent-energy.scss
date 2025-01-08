@@ -1,0 +1,23 @@
+@import "../base/_variables.scss";
+
+.spent-energy {
+	background: var(--grey-bkgd);
+	border-radius: 5px;
+	padding: 32px;
+	display: flex;
+	gap: 20px;
+	align-items: center;
+
+	&--number {
+		font-size: 1.25rem;
+		font-weight: $font-weight-bold;
+		color: var(--grey-dark);
+	}
+
+	&--name {
+		font-size: 0.875rem;
+		font-weight: $font-weight-regular;
+		color: var(--grey-medium-2);
+		line-height: 1.5rem;
+	}
+}

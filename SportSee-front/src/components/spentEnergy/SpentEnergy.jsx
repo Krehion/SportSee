@@ -1,14 +1,15 @@
+import "../../style/components/_spent-energy.scss";
 import PropTypes from "prop-types";
 
 const SpentEnergy = ({ icon, number, unit, name }) => {
 	return (
 		<div className="spent-energy">
-			<img src={icon} alt={name} className="spent-energy__icon" />
-			<div className="spent-energy__info">
-				<p className="spent-energy__number">
+			<img src={icon} alt={name} className="spent-energy--icon" />
+			<div className="spent-energy--info">
+				<p className="spent-energy--number">
 					{number} <span>{unit}</span>
 				</p>
-				<p className="spent-energy__name">{name}</p>
+				<p className="spent-energy--name">{name}</p>
 			</div>
 		</div>
 	);

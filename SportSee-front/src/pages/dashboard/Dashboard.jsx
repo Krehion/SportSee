@@ -41,21 +41,24 @@ const Dashboard = () => {
 						Bonjour <span className="primary-color">{user.userInfos.firstName}</span>
 					</p>
 					<p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
-
-					<UserActivity userId={id} />
-					<SessionLength userId={id} />
-					<ActivityType userId={id} />
-					<Score userId={id} />
-					<div className="dashboard--content--main--spent-energy">
-						<SpentEnergy
-							icon={caloriesIcon}
-							number={calorieCount.toLocaleString("fr-FR")}
-							unit="kCal"
-							name="Calories"
-						/>
-						<SpentEnergy icon={proteinIcon} number={proteinCount} unit="g" name="Protéines" />
-						<SpentEnergy icon={carbsIcon} number={carbohydrateCount} unit="g" name="Glucides" />
-						<SpentEnergy icon={fatIcon} number={lipidCount} unit="g" name="Lipides" />
+					<div className="dashboard--content--main--charts">
+						<div className="dashboard--content--main--charts__left-col">
+							<UserActivity userId={id} />
+							<SessionLength userId={id} />
+							<ActivityType userId={id} />
+							<Score userId={id} />
+						</div>
+						<div className="dashboard--content--main--charts__right-col">
+							<SpentEnergy
+								icon={caloriesIcon}
+								number={calorieCount.toLocaleString("fr-FR")}
+								unit="kCal"
+								name="Calories"
+							/>
+							<SpentEnergy icon={proteinIcon} number={proteinCount} unit="g" name="Protéines" />
+							<SpentEnergy icon={carbsIcon} number={carbohydrateCount} unit="g" name="Glucides" />
+							<SpentEnergy icon={fatIcon} number={lipidCount} unit="g" name="Lipides" />
+						</div>
 					</div>
 				</main>
 			</div>
