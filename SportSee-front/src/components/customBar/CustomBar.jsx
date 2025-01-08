@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const CustomBar = ({ x, y, width, height, fill }) => {
 	const borderRadius = 10;
 	const reducedHeight = Math.max(height - borderRadius / 2, 0); // Prevent negative heights
@@ -24,6 +26,14 @@ const CustomBar = ({ x, y, width, height, fill }) => {
 			/>
 		</svg>
 	);
+};
+
+CustomBar.propTypes = {
+	x: PropTypes.number.isRequired,
+	y: PropTypes.number.isRequired,
+	width: PropTypes.number.isRequired,
+	height: PropTypes.number.isRequired,
+	fill: PropTypes.string.isRequired
 };
 
 export default CustomBar;
