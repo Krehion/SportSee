@@ -8,6 +8,12 @@ import UserActivity from "../../components/userActivity/UserActivity";
 import SessionLength from "../../components/sessionLength/SessionLength";
 import ActivityType from "../../components/activityType/ActivityType";
 import Score from "../../components/score/Score";
+import SpentEnergy from "../../components/spentEnergy/SpentEnergy.jsx";
+
+import caloriesIcon from "../../assets/icon-calories.svg";
+import proteinIcon from "../../assets/icon-protein.svg";
+import carbsIcon from "../../assets/icon-carbs.svg";
+import fatIcon from "../../assets/icon-fat.svg";
 
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
@@ -22,6 +28,8 @@ const Dashboard = () => {
 	}, [id, setUserId]);
 
 	const user = USER_MAIN_DATA.find((user) => user.id === parseInt(id));
+
+	const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = user.keyData;
 
 	return (
 		<div className="dashboard">
@@ -38,6 +46,17 @@ const Dashboard = () => {
 					<SessionLength userId={id} />
 					<ActivityType userId={id} />
 					<Score userId={id} />
+					<div className="dashboard--content--main--spent-energy">
+						<SpentEnergy
+							icon={caloriesIcon}
+							number={calorieCount.toLocaleString("fr-FR")}
+							unit="kCal"
+							name="Calories"
+						/>
+						<SpentEnergy icon={proteinIcon} number={proteinCount} unit="g" name="Protéines" />
+						<SpentEnergy icon={carbsIcon} number={carbohydrateCount} unit="g" name="Glucides" />
+						<SpentEnergy icon={fatIcon} number={lipidCount} unit="g" name="Lipides" />
+					</div>
 				</main>
 			</div>
 		</div>
