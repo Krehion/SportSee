@@ -1,3 +1,5 @@
+import "../../style/components/_session-length.scss";
+
 import PropTypes from "prop-types";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from "recharts";
 import { USER_AVERAGE_SESSIONS } from "../../datas/mockData";
@@ -35,7 +37,7 @@ const SessionLength = ({ userId }) => {
 					<XAxis dataKey="weekday" tick={{ fontSize: 12 }} />
 					<YAxis dataKey="sessionLength" />
 					<Tooltip />
-					<Line type="monotone" dataKey="sessionLength" stroke="#ff0101" strokeWidth={2} dot={false} />
+					<Line type="monotone" dataKey="sessionLength" stroke="#ffffff" strokeWidth={2} dot={false} />
 				</LineChart>
 			</ResponsiveContainer>
 		</div>

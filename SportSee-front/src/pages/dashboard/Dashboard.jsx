@@ -37,16 +37,20 @@ const Dashboard = () => {
 			<div className="dashboard--content">
 				<Sidebar />
 				<main className="dashboard--content--main">
-					<p className="dashboard--content--main--greetings">
-						Bonjour <span className="primary-color">{user.userInfos.firstName}</span>
-					</p>
-					<p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
+					<div className="dashboard--content--main--greetings">
+						<p className="dashboard--content--main--greetings__hello">
+							Bonjour <span className="primary-color">{user.userInfos.firstName}</span>
+						</p>
+						<p>Félicitations ! Vous avez explosé vos objectifs hier 👏</p>
+					</div>
 					<div className="dashboard--content--main--charts">
 						<div className="dashboard--content--main--charts__left-col">
 							<UserActivity userId={id} />
-							<SessionLength userId={id} />
-							<ActivityType userId={id} />
-							<Score userId={id} />
+							<div className="dashboard--content--main--charts--small-charts">
+								<SessionLength userId={id} />
+								<ActivityType userId={id} />
+								<Score userId={id} />
+							</div>
 						</div>
 						<div className="dashboard--content--main--charts__right-col">
 							<SpentEnergy

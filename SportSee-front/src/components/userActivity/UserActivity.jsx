@@ -1,4 +1,5 @@
 import "../../style/base/_variables.scss";
+import "../../style/components/_user-activity.scss";
 import CustomBar from "../customBar/CustomBar";
 
 import PropTypes from "prop-types";

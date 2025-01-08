@@ -1,3 +1,5 @@
+import "../../style/components/_activity-type.scss";
+
 import PropTypes from "prop-types";
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer } from "recharts";
 import { USER_PERFORMANCE } from "../../datas/mockData";

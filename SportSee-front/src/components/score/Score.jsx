@@ -1,3 +1,5 @@
+import "../../style/components/_score.scss";
+
 import PropTypes from "prop-types";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import { USER_MAIN_DATA } from "../../datas/mockData";
