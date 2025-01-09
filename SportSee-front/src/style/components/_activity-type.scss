@@ -1,5 +1,15 @@
+@import "../base/_variables.scss";
+
 .activity-type-chart {
 	flex: 1;
 	background: var(--grey-dark);
 	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	tspan {
+		font-size: 0.75rem;
+		font-weight: $font-weight-regular;
+	}
 }

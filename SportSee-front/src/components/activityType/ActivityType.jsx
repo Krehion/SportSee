@@ -15,6 +15,9 @@ const ActivityType = ({ userId }) => {
 		6: "Intensité"
 	};
 
+	const rootStyles = getComputedStyle(document.documentElement);
+	const colorRed = rootStyles.getPropertyValue("--color-primary").trim();
+
 	// Find the user's performance data
 	const userPerformance = USER_PERFORMANCE.find((performance) => performance.userId === parseInt(userId));
 
@@ -30,11 +33,11 @@ const ActivityType = ({ userId }) => {
 
 	return (
 		<div className="activity-type-chart">
-			<ResponsiveContainer width="100%" height={300}>
-				<RadarChart outerRadius={90} data={data}>
-					<PolarGrid />
-					<PolarAngleAxis dataKey="activity" tick={{ fontSize: 12 }} />
-					<Radar name="Performance" dataKey="value" stroke="#ff0101" fill="#ff0101" fillOpacity={0.6} />
+			<ResponsiveContainer width="95%" height="95%">
+				<RadarChart outerRadius="70%" data={data}>
+					<PolarGrid gridType="polygon" radialLines={false} stroke="#ffffff" />
+					<PolarAngleAxis dataKey="activity" tick={{ fontSize: 12, fill: "#ffffff" }} />
+					<Radar name="Performance" dataKey="value" fill={colorRed} fillOpacity={0.7} />
 				</RadarChart>
 			</ResponsiveContainer>
 		</div>
