@@ -31,7 +31,7 @@ const SessionLength = ({ userId }) => {
 
 	return (
 		<div className="session-length-chart">
-			<h2>Durée moyenne des sessions</h2>
+			<h2 className="chart-title">Durée moyenne des sessions</h2>
 			<ResponsiveContainer width="100%" height={300}>
 				<LineChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
 					<XAxis dataKey="weekday" tick={{ fontSize: 12 }} />

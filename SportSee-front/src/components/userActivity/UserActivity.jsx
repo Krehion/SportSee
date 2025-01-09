@@ -25,7 +25,7 @@ const UserActivity = ({ userId }) => {
 
 	return (
 		<div className="activity-chart">
-			<h2>Activité quotidienne</h2>
+			<h2 className="chart-title">Activité quotidienne</h2>
 			<ResponsiveContainer width="100%" height={300}>
 				<BarChart data={data} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
 					<CartesianGrid strokeDasharray="3 3" horizontal={true} vertical={false} />
