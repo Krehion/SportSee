@@ -30,6 +30,7 @@ const Dashboard = () => {
 	const user = USER_MAIN_DATA.find((user) => user.id === parseInt(id));
 
 	const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = user.keyData;
+	// changer : reconstituer un tableau et passer la variable au composant (prendre exemple sidebar)
 
 	return (
 		<div className="dashboard">
