@@ -1,3 +1,5 @@
+@import "../base/_variables.scss";
+
 *,
 *::before,
 *::after {
@@ -19,4 +21,13 @@ a {
 
 .primary-color {
 	color: var(--color-primary);
+}
+
+.chart-title {
+	color: var(--grey-dark);
+	font-size: 0.9375rem;
+	font-weight: $font-weight-regular;
+	position: absolute;
+	top: 24px;
+	left: 30px;
 }

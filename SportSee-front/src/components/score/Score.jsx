@@ -21,11 +21,19 @@ const Score = ({ userId }) => {
 		{ name: "Remaining", value: 1 - score }
 	];
 
-	const COLORS = ["#ff0101", "#fbfbfb"]; // Adjust colors as needed
+	const COLORS = ["#ff0101", "transparent"];
 
 	return (
 		<div className="score-chart">
-			<h2>Score</h2>
+			<h2 className="chart-title">Score</h2>
+			<div className="score-center">
+				<p className="score-percentage">{`${Math.round(score * 100)}%`}</p>
+				<p className="score-label">
+					de votre
+					<br />
+					objectif
+				</p>
+			</div>
 			<ResponsiveContainer width="100%" height={300}>
 				<PieChart>
 					<Pie
@@ -34,22 +42,18 @@ const Score = ({ userId }) => {
 						nameKey="name"
 						cx="50%"
 						cy="50%"
-						innerRadius={70}
-						outerRadius={90}
+						innerRadius={90}
+						outerRadius={100}
 						startAngle={90}
 						endAngle={450}
 						paddingAngle={5}
 						cornerRadius={10}>
 						{data.map((entry, index) => (
-							<Cell key={`cell-${index}`} fill={COLORS[index]} />
+							<Cell key={`cell-${index}`} fill={COLORS[index]} stroke={COLORS[index]} />
 						))}
 					</Pie>
 				</PieChart>
 			</ResponsiveContainer>
-			<div className="score-center">
-				<p className="score-percentage">{`${Math.round(score * 100)}%`}</p>
-				<p className="score-label">de votre objectif</p>
-			</div>
 		</div>
 	);
 };
