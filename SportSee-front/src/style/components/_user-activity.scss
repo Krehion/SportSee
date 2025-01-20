@@ -1,5 +1,13 @@
+@import "../base/_variables.scss";
+
 .activity-chart {
 	background: var(--grey-bkgd);
 	border-radius: 5px;
 	position: relative;
+
+	&--legend {
+		color: var(--grey-medium-2);
+		font-weight: $font-weight-regular;
+		font-size: 0.875rem;
+	}
 }
