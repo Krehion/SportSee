@@ -58,6 +58,15 @@ const UserActivity = ({ userId }) => {
 		);
 	};
 
+	CustomLegend.propTypes = {
+		payload: PropTypes.arrayOf(
+			PropTypes.shape({
+				color: PropTypes.string.isRequired,
+				value: PropTypes.string.isRequired
+			})
+		).isRequired
+	};
+
 	return (
 		<div className="activity-chart">
 			<h2 className="chart-title">Activité quotidienne</h2>
