@@ -10,4 +10,17 @@
 		font-weight: $font-weight-regular;
 		font-size: 0.875rem;
 	}
+
+	&--tooltip {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		transform: translateX(3em);
+		padding: 10px;
+		background-color: var(--red-dark);
+		color: white;
+		font-weight: $font-weight-regular;
+		font-size: 0.7rem;
+		line-height: 2rem;
+	}
 }
