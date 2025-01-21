@@ -6,6 +6,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { USER_ACTIVITY } from "../../datas/mockData";
 
 import CustomToolTip from "./CustomToolTip";
+import CustomLegend from "./CustomLegend";
 
 const UserActivity = ({ userId }) => {
 	// Get the root CSS variables
@@ -24,51 +25,6 @@ const UserActivity = ({ userId }) => {
 
 	// Extract the sessions array
 	const data = userActivity.sessions;
-
-	const CustomLegend = ({ payload }) => {
-		return (
-			<div
-				style={{
-					position: "relative",
-					height: "auto",
-					right: 0,
-					top: 0,
-					marginBottom: "30px",
-					display: "flex",
-					justifyContent: "right",
-					alignItems: "center"
-				}}>
-				{payload.map((entry, index) => (
-					<div
-						key={`item-${index}`}
-						style={{
-							display: "flex",
-							alignItems: "center",
-							marginLeft: "30px"
-						}}>
-						<div
-							style={{
-								width: "8px",
-								height: "8px",
-								backgroundColor: entry.color,
-								marginRight: "10px",
-								borderRadius: "50%"
-							}}></div>
-						<span className="activity-chart--legend">{entry.value}</span>
-					</div>
-				))}
-			</div>
-		);
-	};
-
-	CustomLegend.propTypes = {
-		payload: PropTypes.arrayOf(
-			PropTypes.shape({
-				color: PropTypes.string.isRequired,
-				value: PropTypes.string.isRequired
-			})
-		).isRequired
-	};
 
 	return (
 		<div className="activity-chart">
