@@ -1,5 +1,3 @@
-import { USER_MAIN_DATA } from "../../datas/mockData.js";
-
 import "../../style/layout/_dashboard.scss";
 
 import Header from "../../components/header/Header";
@@ -16,18 +14,38 @@ import carbsIcon from "../../assets/icon-carbs.svg";
 import fatIcon from "../../assets/icon-fat.svg";
 
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useUser } from "../../context/UserContext";
+import { getUserMainData } from "../../services/DataService.jsx";
 
 const Dashboard = () => {
 	const { id } = useParams(); // get ID from URL
 	const { setUserId } = useUser();
+	const [user, setUser] = useState(null);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
+
 	// update context to store ID
 	useEffect(() => {
 		setUserId(id);
+
+		const fetchData = async () => {
+			try {
+				const userData = await getUserMainData(id);
+				setUser(userData);
+			} catch (err) {
+				setError("Failed to load user data.");
+				console.error(err);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchData();
 	}, [id, setUserId]);
 
-	const user = USER_MAIN_DATA.find((user) => user.id === parseInt(id));
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>{error}</p>;
 
 	const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = user.keyData;
 	// changer : reconstituer un tableau et passer la variable au composant (prendre exemple sidebar)
