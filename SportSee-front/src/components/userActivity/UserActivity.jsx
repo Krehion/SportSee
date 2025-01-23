@@ -1,9 +1,10 @@
-import "../../style/base/_variables.scss";
-import "../../style/components/_user-activity.scss";
-
+import { useEffect, useState } from "react";
+import { getUserActivity } from "../../services/DataService.js";
 import PropTypes from "prop-types";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
-import { USER_ACTIVITY } from "../../datas/mockData";
+
+import "../../style/base/_variables.scss";
+import "../../style/components/_user-activity.scss";
 
 import CustomToolTip from "./CustomToolTip";
 import CustomLegend from "./CustomLegend";
@@ -15,15 +16,32 @@ const UserActivity = ({ userId }) => {
 	const colorGreyDark = rootStyles.getPropertyValue("--grey-dark").trim();
 	const colorGreyLight = rootStyles.getPropertyValue("--grey-light").trim();
 
-	// Filter the user activity data based on userId
-	const userActivity = USER_ACTIVITY.find((activity) => activity.userId === parseInt(userId));
+	const [userActivity, setUserActivity] = useState(null);
+	const [error, setError] = useState(null);
 
-	// Check if user activity exists
-	if (!userActivity) {
-		return <p>No activity data available for this user.</p>;
+	useEffect(() => {
+		const fetchActivityData = async () => {
+			try {
+				const activityData = await getUserActivity(userId); // Fetch the data
+				setUserActivity(activityData); // Update state with the fetched data
+				setError(null); // Clear any previous errors
+			} catch (err) {
+				console.error("Failed to fetch user activity:", err);
+				setError(err.message); // Set the error state
+			}
+		};
+
+		fetchActivityData();
+	}, [userId]); // Ensure `useEffect` runs when `userId` changes
+
+	if (error) {
+		return <p>Error loading user activity: {error}</p>;
 	}
 
-	// Extract the sessions array
+	if (!userActivity || !userActivity.sessions) {
+		return <p>Loading user activity...</p>;
+	}
+
 	const data = userActivity.sessions;
 
 	return (
