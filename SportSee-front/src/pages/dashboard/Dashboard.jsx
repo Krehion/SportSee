@@ -16,10 +16,11 @@ import fatIcon from "../../assets/icon-fat.svg";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useUser } from "../../context/UserContext";
-import { getUserMainData } from "../../services/DataService.jsx";
+import { getUserMainData } from "../../services/DataService.js";
 
 const Dashboard = () => {
 	const { id } = useParams(); // get ID from URL
+	const numericUserId = parseInt(id, 10); // Convert string to number
 	const { setUserId } = useUser();
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -27,7 +28,7 @@ const Dashboard = () => {
 
 	// update context to store ID
 	useEffect(() => {
-		setUserId(id);
+		setUserId(numericUserId);
 
 		const fetchData = async () => {
 			try {
@@ -42,7 +43,7 @@ const Dashboard = () => {
 		};
 
 		fetchData();
-	}, [id, setUserId]);
+	}, [id, numericUserId, setUserId]);
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>{error}</p>;
@@ -64,11 +65,11 @@ const Dashboard = () => {
 					</div>
 					<div className="dashboard--content--main--charts">
 						<div className="dashboard--content--main--charts__left-col">
-							<UserActivity userId={id} />
+							<UserActivity userId={numericUserId} />
 							<div className="dashboard--content--main--charts--small-charts">
-								<SessionLength userId={id} />
-								<ActivityType userId={id} />
-								<Score userId={id} />
+								<SessionLength userId={numericUserId} />
+								<ActivityType userId={numericUserId} />
+								<Score userId={numericUserId} />
 							</div>
 						</div>
 						<div className="dashboard--content--main--charts__right-col">
