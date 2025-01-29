@@ -1,18 +1,17 @@
-import "../../style/components/_session-length.scss";
-import "../../style/base/_base.scss";
-
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Rectangle } from "recharts";
-import { USER_AVERAGE_SESSIONS } from "../../datas/mockData";
+import { getUserAverageSessions } from "../../services/DataService.js";
+
+import "../../style/components/_session-length.scss";
+import "../../style/base/_base.scss";
 
 import CustomToolTip from "./CustomToolTip";
 
 // Function to convert hex color to rgba with transparency
 const hexToRgba = (hex, alpha) => {
 	if (!hex) return "";
-	// Remove "#" if present
-	hex = hex.replace("#", "");
-	// Parse r, g, b values
+	hex = hex.replace("#", ""); // Remove "#" if present
 	const bigint = parseInt(hex, 16);
 	const r = (bigint >> 16) & 255;
 	const g = (bigint >> 8) & 255;
@@ -37,22 +36,44 @@ const SessionLength = ({ userId }) => {
 		7: "D"
 	};
 
-	// Find the user's session data
-	const userSessions = USER_AVERAGE_SESSIONS.find((session) => session.userId === parseInt(userId));
+	// State variables
+	const [data, setData] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
 
-	if (!userSessions) {
-		return <p>No session data available for this user.</p>;
-	}
+	// Fetch user session data
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const userSessions = await getUserAverageSessions(userId);
+				if (!userSessions || !userSessions.sessions) {
+					throw new Error("Aucune donnée de session trouvée.");
+				}
 
-	// Map sessions data to include the weekday abbreviation
-	const data = [
-		{ weekday: "", sessionLength: 0 }, // Add a placeholder at the start
-		...userSessions.sessions.map((session) => ({
-			...session,
-			weekday: dayToWeekday[session.day]
-		})),
-		{ weekday: "", sessionLength: 0 } // Add a placeholder at the end
-	];
+				// Map sessions data to include weekday abbreviations
+				const formattedData = [
+					{ weekday: "", sessionLength: 0 }, // Placeholder at the start
+					...userSessions.sessions.map((session) => ({
+						...session,
+						weekday: dayToWeekday[session.day]
+					})),
+					{ weekday: "", sessionLength: 0 } // Placeholder at the end
+				];
+
+				setData(formattedData);
+			} catch (err) {
+				setError(err.message);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchData();
+	}, [userId]);
+
+	// Handle loading and error states
+	if (loading) return <p>Chargement des données...</p>;
+	if (error) return <p>{error}</p>;
 
 	// Custom cursor component to highlight the right side
 	const CustomCursor = ({ points, width, height }) => {
@@ -61,16 +82,7 @@ const SessionLength = ({ userId }) => {
 		const rightMargin = 20;
 
 		return (
-			<>
-				{/* Highlighted background on the right side */}
-				<Rectangle
-					x={x}
-					y={0}
-					width={width - x + rightMargin}
-					height={height * 2}
-					fill={hexToRgba(colorRedDark, 0.5)}
-				/>
-			</>
+			<Rectangle x={x} y={0} width={width - x + rightMargin} height={height * 2} fill={hexToRgba(colorRedDark, 0.5)} />
 		);
 	};
 
@@ -93,7 +105,6 @@ const SessionLength = ({ userId }) => {
 						tick={{ fontSize: "0.75rem", fontWeight: 500, fill: "#ffffff" }}
 						tickLine={false}
 						axisLine={false}
-						fill="#ffffff"
 					/>
 					<YAxis hide domain={["dataMin-10", "dataMax+10"]} />
 					<Tooltip content={<CustomToolTip />} cursor={<CustomCursor />} />
