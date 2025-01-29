@@ -49,5 +49,12 @@ export const getUserPerformance = async (userId) => {
 	if (useMockData) {
 		return USER_PERFORMANCE.find((user) => user.userId === parseInt(userId, 10));
 	}
-	return fetchData(`/user/${userId}/performance`);
+	const response = await fetchData(`/user/${userId}/performance`);
+
+	// Normalize the structure so that it matches the mock data
+	return {
+		userId: response.data.userId,
+		kind: response.data.kind,
+		data: response.data.data
+	};
 };
