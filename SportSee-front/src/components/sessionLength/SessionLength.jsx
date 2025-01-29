@@ -25,17 +25,6 @@ const SessionLength = ({ userId }) => {
 	const rootStyles = getComputedStyle(document.documentElement);
 	const colorRedDark = rootStyles.getPropertyValue("--red-dark").trim();
 
-	// Map day number to the corresponding weekday
-	const dayToWeekday = {
-		1: "L",
-		2: "M",
-		3: "M",
-		4: "J",
-		5: "V",
-		6: "S",
-		7: "D"
-	};
-
 	// State variables
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
@@ -43,6 +32,17 @@ const SessionLength = ({ userId }) => {
 
 	// Fetch user session data
 	useEffect(() => {
+		// Map day number to the corresponding weekday
+		const dayToWeekday = {
+			1: "L",
+			2: "M",
+			3: "M",
+			4: "J",
+			5: "V",
+			6: "S",
+			7: "D"
+		};
+
 		const fetchData = async () => {
 			try {
 				const userSessions = await getUserAverageSessions(userId);
