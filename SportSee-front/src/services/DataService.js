@@ -4,6 +4,7 @@ import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE 
 // Models
 import UserDataModel from "../models/UserDataModel";
 import UserActivityModel from "../models/UserActivityModel";
+import UserAverageSessionsModel from "../models/UserAverageSessionsModel";
 
 const useMockData = false; // Toggle this to switch between API and mock data
 
@@ -50,12 +51,13 @@ export const getUserActivity = async (userId) => {
 
 export const getUserAverageSessions = async (userId) => {
 	if (useMockData) {
-		return USER_AVERAGE_SESSIONS.find((user) => user.userId === parseInt(userId, 10));
+		const rawData = USER_AVERAGE_SESSIONS.find((user) => user.userId === parseInt(userId, 10));
+		return rawData ? new UserAverageSessionsModel(rawData) : null;
 	}
 
 	try {
 		const response = await fetchData(`/user/${userId}/average-sessions`);
-		return { sessions: response.data.sessions }; // Normalized to match mocked data structure
+		return new UserAverageSessionsModel(response.data);
 	} catch (error) {
 		console.error(`Error fetching user average sessions for userId ${userId}:`, error);
 		throw error;
