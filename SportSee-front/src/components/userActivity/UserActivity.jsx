@@ -43,7 +43,6 @@ const UserActivity = ({ userId }) => {
 	}
 
 	const data = userActivity.sessions;
-
 	return (
 		<div className="activity-chart">
 			<h2 className="chart-title">Activité quotidienne</h2>
@@ -71,8 +70,8 @@ const UserActivity = ({ userId }) => {
 						domain={["dataMin", "dataMax"]}
 						ticks={(() => {
 							// Get the min and max values of the data
-							const minValue = Math.min(...data.map((item) => item.kilogram), ...data.map((item) => item.calories));
-							const maxValue = Math.max(...data.map((item) => item.kilogram), ...data.map((item) => item.calories));
+							const minValue = Math.min(...data.map((item) => item.kg), ...data.map((item) => item.calories));
+							const maxValue = Math.max(...data.map((item) => item.kg), ...data.map((item) => item.calories));
 
 							// Calculate the number of ticks and step size
 							const numberOfTicks = 3;
@@ -95,7 +94,7 @@ const UserActivity = ({ userId }) => {
 							fill: "rgba(196, 196, 196, 0.5)" // hover rectangle color
 						}}
 					/>
-					<Bar dataKey="kilogram" fill={colorGreyDark} name="Poids (kg)" radius={[4, 4, 0, 0]} barSize={8} />
+					<Bar dataKey="kg" fill={colorGreyDark} name="Poids (kg)" radius={[4, 4, 0, 0]} barSize={8} />
 					<Bar
 						dataKey="calories"
 						fill={colorRedDark}

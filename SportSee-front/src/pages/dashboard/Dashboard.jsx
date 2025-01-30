@@ -48,30 +48,30 @@ const Dashboard = () => {
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>{error}</p>;
 
-	const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = user.keyData;
+	const { calories = 0, protein = 0, carbs = 0, fat = 0 } = user.keyData || {};
 
 	const energyList = [
 		{
 			icon: caloriesIcon,
-			number: calorieCount.toLocaleString("fr-FR"),
+			number: calories.toLocaleString("fr-FR"),
 			unit: "kCal",
 			name: "Calories"
 		},
 		{
 			icon: proteinIcon,
-			number: proteinCount,
+			number: protein,
 			unit: "g",
 			name: "Protéines"
 		},
 		{
 			icon: carbsIcon,
-			number: carbohydrateCount,
+			number: carbs,
 			unit: "g",
 			name: "Glucides"
 		},
 		{
 			icon: fatIcon,
-			number: lipidCount,
+			number: fat,
 			unit: "g",
 			name: "Lipides"
 		}

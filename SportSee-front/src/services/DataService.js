@@ -1,6 +1,10 @@
 // Mocked data
 import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE } from "../datas/mockData";
 
+// Models
+import UserDataModel from "../models/UserDataModel";
+import UserActivityModel from "../models/UserActivityModel";
+
 const useMockData = false; // Toggle this to switch between API and mock data
 
 // API URLs
@@ -18,11 +22,12 @@ const fetchData = async (endpoint) => {
 // Service functions
 export const getUserMainData = async (userId) => {
 	if (useMockData) {
-		return USER_MAIN_DATA.find((user) => user.id === parseInt(userId, 10));
+		const rawData = USER_MAIN_DATA.find((user) => user.id === parseInt(userId, 10));
+		return rawData ? new UserDataModel(rawData) : null;
 	}
 	try {
 		const response = await fetchData(`/user/${userId}`);
-		return response.data;
+		return new UserDataModel(response.data);
 	} catch (error) {
 		console.error(`Error fetching user activity for userId ${userId}:`, error);
 		throw error;
@@ -31,12 +36,12 @@ export const getUserMainData = async (userId) => {
 
 export const getUserActivity = async (userId) => {
 	if (useMockData) {
-		const user = USER_ACTIVITY.find((user) => user.userId === parseInt(userId, 10));
-		return user ? { sessions: user.sessions } : null;
+		const rawData = USER_ACTIVITY.find((user) => user.userId === parseInt(userId, 10));
+		return rawData ? new UserActivityModel(rawData) : null;
 	}
 	try {
 		const response = await fetchData(`/user/${userId}/activity`);
-		return { sessions: response.data.sessions }; // Normalized to match mocked data structure
+		return new UserActivityModel(response.data);
 	} catch (error) {
 		console.error(`Error fetching user activity for userId ${userId}:`, error);
 		throw error;
