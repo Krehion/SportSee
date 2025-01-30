@@ -49,7 +49,33 @@ const Dashboard = () => {
 	if (error) return <p>{error}</p>;
 
 	const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = user.keyData;
-	// changer : reconstituer un tableau et passer la variable au composant (prendre exemple sidebar)
+
+	const energyList = [
+		{
+			icon: caloriesIcon,
+			number: calorieCount.toLocaleString("fr-FR"),
+			unit: "kCal",
+			name: "Calories"
+		},
+		{
+			icon: proteinIcon,
+			number: proteinCount,
+			unit: "g",
+			name: "Protéines"
+		},
+		{
+			icon: carbsIcon,
+			number: carbohydrateCount,
+			unit: "g",
+			name: "Glucides"
+		},
+		{
+			icon: fatIcon,
+			number: lipidCount,
+			unit: "g",
+			name: "Lipides"
+		}
+	];
 
 	return (
 		<div className="dashboard">
@@ -73,15 +99,9 @@ const Dashboard = () => {
 							</div>
 						</div>
 						<div className="dashboard--content--main--charts__right-col">
-							<SpentEnergy
-								icon={caloriesIcon}
-								number={calorieCount.toLocaleString("fr-FR")}
-								unit="kCal"
-								name="Calories"
-							/>
-							<SpentEnergy icon={proteinIcon} number={proteinCount} unit="g" name="Protéines" />
-							<SpentEnergy icon={carbsIcon} number={carbohydrateCount} unit="g" name="Glucides" />
-							<SpentEnergy icon={fatIcon} number={lipidCount} unit="g" name="Lipides" />
+							{energyList.map((data, index) => (
+								<SpentEnergy key={index} icon={data.icon} number={data.number} unit={data.unit} name={data.name} />
+							))}
 						</div>
 					</div>
 				</main>
