@@ -1,4 +1,4 @@
-const useMockData = true; // Toggle this to switch between API and mock data
+const useMockData = false; // Toggle this to switch between API and mock data
 
 // Mocked data
 import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE } from "../datas/mockData";
@@ -10,7 +10,7 @@ import UserAverageSessionsModel from "../models/UserAverageSessionsModel";
 import UserPerformanceModel from "../models/UserPerformanceModel";
 
 // API URLs
-const ApiBaseUrl = "http://localhost:3000";
+const ApiBaseUrl = "http://localhost:9999";
 
 // Fetch data from API
 const fetchData = async (endpoint) => {
