@@ -1,3 +1,5 @@
+const useMockData = true; // Toggle this to switch between API and mock data
+
 // Mocked data
 import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE } from "../datas/mockData";
 
@@ -6,8 +8,6 @@ import UserDataModel from "../models/UserDataModel";
 import UserActivityModel from "../models/UserActivityModel";
 import UserAverageSessionsModel from "../models/UserAverageSessionsModel";
 import UserPerformanceModel from "../models/UserPerformanceModel";
-
-const useMockData = false; // Toggle this to switch between API and mock data
 
 // API URLs
 const ApiBaseUrl = "http://localhost:3000";
