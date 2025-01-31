@@ -10,7 +10,7 @@ import UserAverageSessionsModel from "../models/UserAverageSessionsModel";
 import UserPerformanceModel from "../models/UserPerformanceModel";
 
 // API URLs
-const ApiBaseUrl = "http://localhost:9999";
+const ApiBaseUrl = "http://localhost:3000";
 
 // Fetch data from API
 const fetchData = async (endpoint) => {
