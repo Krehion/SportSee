@@ -95,18 +95,11 @@ const SessionLength = ({ userId }) => {
 
 	return (
 		<div className="session-length-chart">
-			<h2 className="chart-title ">
+			<h2 className="chart-title">
 				<span className="white-color">Durée moyenne des sessions</span>
 			</h2>
 			<ResponsiveContainer width="100%" height={300}>
 				<LineChart data={data} margin={{ top: 24, right: -20, left: -20, bottom: 5 }}>
-					<XAxis
-						dataKey="weekday"
-						tick={{ fontSize: "0.75rem", fontWeight: 500, fill: "#ffffff" }}
-						tickLine={false}
-						axisLine={false}
-					/>
-					<YAxis hide domain={["dataMin-10", "dataMax+10"]} />
 					<Tooltip content={<CustomToolTip />} cursor={<CustomCursor />} />
 					<Line
 						type="natural"
@@ -120,6 +113,13 @@ const SessionLength = ({ userId }) => {
 						}}
 						dot={false}
 					/>
+					<XAxis
+						dataKey="weekday"
+						tick={{ fontSize: "0.75rem", fontWeight: 500, fill: "#ffffff" }}
+						tickLine={false}
+						axisLine={false}
+					/>
+					<YAxis hide domain={["dataMin-10", "dataMax+10"]} />
 					<defs>
 						<linearGradient id="colorUv" x1="0%" y1="0" x2="100%" y2="0">
 							<stop offset="0%" stopColor="rgba(255, 255, 255, 0.2)" />
