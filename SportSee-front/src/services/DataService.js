@@ -1,7 +1,17 @@
 const useMockData = true; // Toggle this to switch between API and mock data
 
-// Mocked data
-import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE } from "../datas/mockData";
+// Fetch mock data from public folder
+const fetchMockData = async () => {
+	try {
+		const response = await fetch("/SportSee/mockData.json");
+		if (!response.ok) throw new Error("Failed to load mock data");
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.error(error);
+		return null;
+	}
+};
 
 // Models
 import UserDataModel from "../models/UserDataModel";
@@ -21,10 +31,20 @@ const fetchData = async (endpoint) => {
 	return response.json();
 };
 
+// Fetch all mock data once and filter inside functions
+let mockDataCache = null;
+const getMockData = async () => {
+	if (!mockDataCache) {
+		mockDataCache = await fetchMockData();
+	}
+	return mockDataCache;
+};
+
 // Service functions
 export const getUserMainData = async (userId) => {
 	if (useMockData) {
-		const rawData = USER_MAIN_DATA.find((user) => user.id === parseInt(userId, 10));
+		const mockData = await getMockData();
+		const rawData = mockData?.USER_MAIN_DATA.find((user) => user.id === parseInt(userId, 10));
 		return rawData ? new UserDataModel(rawData) : null;
 	}
 	try {
@@ -38,7 +58,8 @@ export const getUserMainData = async (userId) => {
 
 export const getUserActivity = async (userId) => {
 	if (useMockData) {
-		const rawData = USER_ACTIVITY.find((user) => user.userId === parseInt(userId, 10));
+		const mockData = await getMockData();
+		const rawData = mockData?.USER_ACTIVITY.find((user) => user.userId === parseInt(userId, 10));
 		return rawData ? new UserActivityModel(rawData) : null;
 	}
 	try {
@@ -52,7 +73,8 @@ export const getUserActivity = async (userId) => {
 
 export const getUserAverageSessions = async (userId) => {
 	if (useMockData) {
-		const rawData = USER_AVERAGE_SESSIONS.find((user) => user.userId === parseInt(userId, 10));
+		const mockData = await getMockData();
+		const rawData = mockData?.USER_AVERAGE_SESSIONS.find((user) => user.userId === parseInt(userId, 10));
 		return rawData ? new UserAverageSessionsModel(rawData) : null;
 	}
 
@@ -67,7 +89,8 @@ export const getUserAverageSessions = async (userId) => {
 
 export const getUserPerformance = async (userId) => {
 	if (useMockData) {
-		const rawData = USER_PERFORMANCE.find((user) => user.userId === parseInt(userId, 10));
+		const mockData = await getMockData();
+		const rawData = mockData?.USER_PERFORMANCE.find((user) => user.userId === parseInt(userId, 10));
 		return rawData ? new UserPerformanceModel(rawData) : null;
 	}
 	try {
