@@ -6,7 +6,6 @@ const fetchMockData = async () => {
 		const response = await fetch("/SportSee/mockData.json");
 		if (!response.ok) throw new Error("Failed to load mock data");
 		const data = await response.json();
-		console.log("Mock data loaded:", data); // Debugging
 		return data;
 	} catch (error) {
 		console.error("Error fetching mock data:", error);
@@ -45,15 +44,11 @@ const getMockData = async () => {
 export const getUserMainData = async (userId) => {
 	if (useMockData) {
 		const mockData = await getMockData();
-		console.log("Mock data loaded:", mockData); // ✅ Check if mockData is loaded
-
 		if (!mockData || !mockData.USER_MAIN_DATA) {
 			console.error("Mock data is null or undefined!");
 			return null;
 		}
 		const rawData = mockData?.USER_MAIN_DATA.find((user) => user.id === parseInt(userId, 10));
-		console.log("Found user data:", rawData); // ✅ Check if a user is found
-
 		if (!rawData) {
 			console.error(`❌ ERROR: No user found for ID ${userId}`);
 			return null;
