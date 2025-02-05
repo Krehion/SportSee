@@ -6,10 +6,11 @@ const fetchMockData = async () => {
 		const response = await fetch("/SportSee/mockData.json");
 		if (!response.ok) throw new Error("Failed to load mock data");
 		const data = await response.json();
+		console.log("Mock data loaded:", data); // Debugging
 		return data;
 	} catch (error) {
-		console.error(error);
-		return null;
+		console.error("Error fetching mock data:", error);
+		return null; // Return null instead of undefined
 	}
 };
 
@@ -44,6 +45,10 @@ const getMockData = async () => {
 export const getUserMainData = async (userId) => {
 	if (useMockData) {
 		const mockData = await getMockData();
+		if (!mockData || !mockData.USER_MAIN_DATA) {
+			console.error("Mock data is null or undefined!");
+			return null;
+		}
 		const rawData = mockData?.USER_MAIN_DATA.find((user) => user.id === parseInt(userId, 10));
 		return rawData ? new UserDataModel(rawData) : null;
 	}
@@ -59,6 +64,10 @@ export const getUserMainData = async (userId) => {
 export const getUserActivity = async (userId) => {
 	if (useMockData) {
 		const mockData = await getMockData();
+		if (!mockData || !mockData.USER_ACTIVITY) {
+			console.error("Mock data is null or undefined!");
+			return null;
+		}
 		const rawData = mockData?.USER_ACTIVITY.find((user) => user.userId === parseInt(userId, 10));
 		return rawData ? new UserActivityModel(rawData) : null;
 	}
@@ -74,6 +83,10 @@ export const getUserActivity = async (userId) => {
 export const getUserAverageSessions = async (userId) => {
 	if (useMockData) {
 		const mockData = await getMockData();
+		if (!mockData || !mockData.USER_AVERAGE_SESSIONS) {
+			console.error("Mock data is null or undefined!");
+			return null;
+		}
 		const rawData = mockData?.USER_AVERAGE_SESSIONS.find((user) => user.userId === parseInt(userId, 10));
 		return rawData ? new UserAverageSessionsModel(rawData) : null;
 	}
@@ -90,6 +103,10 @@ export const getUserAverageSessions = async (userId) => {
 export const getUserPerformance = async (userId) => {
 	if (useMockData) {
 		const mockData = await getMockData();
+		if (!mockData || !mockData.USER_PERFORMANCE) {
+			console.error("Mock data is null or undefined!");
+			return null;
+		}
 		const rawData = mockData?.USER_PERFORMANCE.find((user) => user.userId === parseInt(userId, 10));
 		return rawData ? new UserPerformanceModel(rawData) : null;
 	}
