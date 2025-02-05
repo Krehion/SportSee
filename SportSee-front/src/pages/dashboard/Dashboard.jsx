@@ -33,6 +33,7 @@ const Dashboard = () => {
 		const fetchData = async () => {
 			try {
 				const userData = await getUserMainData(id);
+				console.log("Fetched user data: ", userData);
 				setUser(userData);
 			} catch (err) {
 				setError("Failed to load user data.");
