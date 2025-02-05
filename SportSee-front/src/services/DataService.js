@@ -1,4 +1,4 @@
-const useMockData = false; // Toggle this to switch between API and mock data
+const useMockData = true; // Toggle this to switch between API and mock data
 
 // Mocked data
 import { USER_MAIN_DATA, USER_ACTIVITY, USER_AVERAGE_SESSIONS, USER_PERFORMANCE } from "../datas/mockData";
