@@ -45,12 +45,21 @@ const getMockData = async () => {
 export const getUserMainData = async (userId) => {
 	if (useMockData) {
 		const mockData = await getMockData();
+		console.log("Mock data loaded:", mockData); // ✅ Check if mockData is loaded
+
 		if (!mockData || !mockData.USER_MAIN_DATA) {
 			console.error("Mock data is null or undefined!");
 			return null;
 		}
 		const rawData = mockData?.USER_MAIN_DATA.find((user) => user.id === parseInt(userId, 10));
-		return rawData ? new UserDataModel(rawData) : null;
+		console.log("Found user data:", rawData); // ✅ Check if a user is found
+
+		if (!rawData) {
+			console.error(`❌ ERROR: No user found for ID ${userId}`);
+			return null;
+		}
+
+		return new UserDataModel(rawData);
 	}
 	try {
 		const response = await fetchData(`/user/${userId}`);
